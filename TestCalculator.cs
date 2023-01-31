@@ -6,14 +6,24 @@ namespace TestCalculator.NUnit
     [TestFixture]
     public class TestCalculator
     {
+        Calculator calculator;
+        [OneTimeSetUp]
+        public void SetUp()
+        {
+            calculator = new Calculator(100, 200);
+        }
         [Test]
-        public void TestAddition() {
-            Calculator calculator = new Calculator(100, 200);
-            float DesiredResult = calculator.Addition(100,200);
-            Assert.AreEqual(300,DesiredResult);
+        [Category("testing time limit")]
+        [Timeout(15)]
+        public void testaddition()
+        {
+
+            float desiredresult = calculator.Addition(100, 200);
+            Assert.AreEqual(300, desiredresult);
         }
 
         [Test]
+        [Timeout(15)]
         public void TestMultiplication()
         {
             Calculator calculator = new Calculator(-150, 1200);
@@ -22,6 +32,7 @@ namespace TestCalculator.NUnit
         }
 
         [Test]
+        [Timeout(15)]
         public void TestSubtraction()
         {
             Calculator calculator = new Calculator(-800, 1600);
@@ -30,11 +41,12 @@ namespace TestCalculator.NUnit
         }
 
         [Test]
+        [Timeout(15)]
         public void TestDivision()
         {
             Calculator calculator = new Calculator(-800, 200);
             float DesiredResult = calculator.Division(-800, 200);
-            Assert.AreEqual(-8, DesiredResult);
+            Assert.AreEqual(-4, DesiredResult);
         }
     }
 }
